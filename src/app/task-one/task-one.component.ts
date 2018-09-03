@@ -1,16 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-task-one',
-  templateUrl: './task-one.component.html',
-  styleUrls: ['./task-one.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-task-one',
+    templateUrl: './task-one.component.html',
+    styleUrls: ['./task-one.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskOneComponent implements OnInit {
 
-  constructor() { }
+    constructor( private apiService: ApiService ) {
+    }
 
-  ngOnInit() {
-  }
-
+    public ngOnInit() {
+        this.apiService.getRepos().subscribe((r) => {
+            console.log(r);
+        });
+    }
 }

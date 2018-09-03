@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { TaskOneComponent } from './task-one/task-one.component';
 import { TaskTwoComponent } from './task-two/task-two.component';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './reducers';
 
 @NgModule({
     declarations: [
@@ -18,11 +22,13 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
+        HttpClientModule,
 
         MatToolbarModule,
         MatButtonModule,
+        StoreModule.forRoot(reducers),
     ],
-    providers: [],
+    providers: [ApiService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

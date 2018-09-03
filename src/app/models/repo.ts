@@ -3,6 +3,7 @@
  */
 
 export interface Repo {
+    uuid: string;
     name: string;
     created_on: string;
     links: {
