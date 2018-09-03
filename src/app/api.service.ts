@@ -19,6 +19,18 @@ export class ApiService {
         );
     }
 
+    public getCommits(username: string, slug: string): Observable<any> {
+        console.log(username);
+        console.log(slug);
+        const url = this.api + '/' + username + '/' + slug + '/commits';
+        return this.http.get(url).pipe(
+            map((res: any) => {
+                return res.values;
+            }),
+            catchError(this.handleError)
+        );
+    }
+
     protected handleError( error: HttpErrorResponse ) {
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.

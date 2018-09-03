@@ -1,0 +1,28 @@
+.repo-table {
+  width: 800px;
+}
+
+.table-row {
+  &:hover {
+    background: rgba(0, 0, 0, .1);
+  }
+}
+
+.owner-cell {
+  display: flex;
+  align-items: center;
+}
+
+.owner-avatar {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  vertical-align: center;
+  padding-right: 5px;
+}
+
+.link-anchor {
+  cursor: pointer;
+  text-decoration: underline;
+  color: blue;
+}

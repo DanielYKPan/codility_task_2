@@ -12,6 +12,7 @@ export interface Repo {
         }
     };
     owner: {
+        username: string;
         display_name: string;
         links: {
             avatar: {
@@ -19,4 +20,5 @@ export interface Repo {
             }
         }
     };
+    slug: string;
 }

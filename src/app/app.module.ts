@@ -6,17 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskOneComponent } from './task-one/task-one.component';
 import { TaskTwoComponent } from './task-two/task-two.component';
-import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatTableModule, MatToolbarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
+import { ToDatePipe } from './pipes/date-string.pipe';
 
 @NgModule({
     declarations: [
         AppComponent,
         TaskOneComponent,
         TaskTwoComponent,
+        ToDatePipe,
     ],
     imports: [
         BrowserModule,
@@ -26,6 +28,7 @@ import { reducers } from './reducers';
 
         MatToolbarModule,
         MatButtonModule,
+        MatTableModule,
         StoreModule.forRoot(reducers),
     ],
     providers: [ApiService],

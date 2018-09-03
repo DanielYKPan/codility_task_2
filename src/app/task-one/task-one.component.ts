@@ -1,5 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { Observable } from 'rxjs';
+import { Repo } from '../models/repo';
+
+import * as fromRoot from '../reducers';
+import { select, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-task-one',
@@ -9,12 +14,20 @@ import { ApiService } from '../api.service';
 })
 export class TaskOneComponent implements OnInit {
 
-    constructor( private apiService: ApiService ) {
+    public repos$: Observable<Repo[]>;
+
+    public displayedColumns: string[] = ['name', 'owner', 'create_date', 'link'];
+
+    constructor( private store: Store<fromRoot.State>,
+                 private router: Router ) {
     }
 
     public ngOnInit() {
-        this.apiService.getRepos().subscribe((r) => {
-            console.log(r);
-        });
+        this.repos$ = this.store.pipe(select(fromRoot.getAllRepo));
+    }
+
+    public handleClickOnRow( row: Repo ) {
+        console.log(row);
+         this.router.navigate(['task-two/commits', row.owner.username, row.slug]);
     }
 }
