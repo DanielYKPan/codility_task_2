@@ -1,31 +1,29 @@
-<ng-container *ngIf="commits$ | async as commits;else elseBlock">
-    <ng-container *ngIf="commits.length > 0;else elseBlock">
-        <table mat-table [dataSource]="commits" class="mat-elevation-z8 commit-table">
-            <!-- Author Column -->
-            <ng-container matColumnDef="author">
-                <th mat-header-cell *matHeaderCellDef>Author</th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.author.user.display_name}}
-                </td>
-            </ng-container>
+<ng-container *ngIf="dataSource;else elseBlock">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 commit-table">
+        <!-- Author Column -->
+        <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Author</th>
+            <td mat-cell *matCellDef="let element">
+                {{element.author.user.display_name}}
+            </td>
+        </ng-container>
 
-            <!-- Date Column -->
-            <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef>Date</th>
-                <td mat-cell *matCellDef="let element"> {{element.date | toDate | date: 'dd/MM/yy'}}</td>
-            </ng-container>
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+            <td mat-cell *matCellDef="let element"> {{element.date | toDate | date: 'dd/MM/yy'}}</td>
+        </ng-container>
 
-            <!-- Message Column -->
-            <ng-container matColumnDef="message">
-                <th mat-header-cell *matHeaderCellDef>Message</th>
-                <td mat-cell *matCellDef="let element"> {{element.message}}</td>
-            </ng-container>
+        <!-- Message Column -->
+        <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef>Message</th>
+            <td mat-cell *matCellDef="let element"> {{element.message}}</td>
+        </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                class="table-row"></tr>
-        </table>
-    </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            class="table-row"></tr>
+    </table>
 </ng-container>
 <ng-template #elseBlock>
     <h1>No Commits Found</h1>

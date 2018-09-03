@@ -1,7 +1,7 @@
-<table mat-table [dataSource]="repos$ | async" class="mat-elevation-z8 repo-table">
+<table mat-table [dataSource]="repos$ | async" matSort class="mat-elevation-z8 repo-table">
     <!-- Owner Column -->
     <ng-container matColumnDef="owner">
-        <th mat-header-cell *matHeaderCellDef>Owner</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Owner</th>
         <td mat-cell *matCellDef="let element" class="owner-cell">
             <img class="owner-avatar" [src]="element.owner.links.avatar.href">
             {{element.owner.display_name}}
@@ -10,13 +10,13 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Repo Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Repo Name</th>
         <td mat-cell *matCellDef="let element"> {{element.name}}</td>
     </ng-container>
 
     <!-- Creation Date Column -->
     <ng-container matColumnDef="create_date">
-        <th mat-header-cell *matHeaderCellDef> Creation Date</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Creation Date</th>
         <td mat-cell *matCellDef="let element"> {{element.created_on | toDate | date: 'dd/MM/yy'}}</td>
     </ng-container>
 
